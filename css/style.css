@@ -45,8 +45,10 @@ span{
 }
 
 .selected-pokemon{
-	height: 4	00px;
+	height: 400px;
 	text-align: center;
 	border: 1px solid black;
 	border-radius: 6px;
+	position: fixed;
+	width: 20%;
 }
