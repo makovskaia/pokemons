@@ -1,0 +1,25 @@
+.card{
+	text-align: center;
+}
+.card > div{
+	border: 1px solid black;
+	border-radius: 6px;
+	height: 230px;
+	margin-bottom: 25px;
+}
+
+.img-responsive{
+	margin-left: auto;
+	margin-right: auto;
+}
+.card>div:hover{
+	cursor: pointer;
+}
+.poison{
+	background-color: rgb(176, 143, 211);
+}
+span{
+	margin: 0px 5px 0px 5px;
+	padding: 2px 5px 2px 5px;
+	border-radius: 2px;
+}
