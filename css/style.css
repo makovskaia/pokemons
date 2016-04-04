@@ -1,7 +1,7 @@
-.card{
+.small-card{
 	text-align: center;
 }
-.card > div{
+.small-card > div{
 	border: 1px solid black;
 	border-radius: 6px;
 	height: 230px;
@@ -12,14 +12,41 @@
 	margin-left: auto;
 	margin-right: auto;
 }
-.card>div:hover{
+.small-card>div:hover{
 	cursor: pointer;
 }
 .poison{
 	background-color: rgb(176, 143, 211);
 }
+.fire{
+	background-color: rgb(234, 166, 166);
+}
+.water{
+	background-color: rgb(149, 205, 219);
+}
+.flying{
+	background-color: rgb(229, 165, 217);
+}
+.normal{
+	background-color: rgb(206, 206, 206);
+}
+.bug{
+	background-color: rgb(186, 216, 169);
+}
 span{
 	margin: 0px 5px 0px 5px;
 	padding: 2px 5px 2px 5px;
 	border-radius: 2px;
+}
+
+.selected-pokemon table{
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.selected-pokemon{
+	height: 4	00px;
+	text-align: center;
+	border: 1px solid black;
+	border-radius: 6px;
 }
