@@ -1,6 +1,11 @@
+.header{
+	height: 150px;
+}
+
 .small-card{
 	text-align: center;
 }
+
 .small-card > div{
 	border: 1px solid black;
 	border-radius: 6px;
@@ -12,27 +17,11 @@
 	margin-left: auto;
 	margin-right: auto;
 }
+
 .small-card>div:hover{
 	cursor: pointer;
 }
-.poison{
-	background-color: rgb(176, 143, 211);
-}
-.fire{
-	background-color: rgb(234, 166, 166);
-}
-.water{
-	background-color: rgb(149, 205, 219);
-}
-.flying{
-	background-color: rgb(229, 165, 217);
-}
-.normal{
-	background-color: rgb(206, 206, 206);
-}
-.bug{
-	background-color: rgb(186, 216, 169);
-}
+
 span{
 	margin: 0px 5px 0px 5px;
 	padding: 2px 5px 2px 5px;
@@ -50,5 +39,64 @@ span{
 	border: 1px solid black;
 	border-radius: 6px;
 	position: fixed;
-	width: 20%;
+	width: 28%;
+}
+
+.footer{
+	height: 50px;
+}
+
+.poison{
+	background-color: rgb(176, 143, 211);
+}
+.fire{
+	background-color: rgb(234, 166, 166);
+}
+.fairy{
+	background-color: rgb(232, 161, 120)
+}
+.water{
+	background-color: rgb(149, 205, 219);
+}
+.flying{
+	background-color: rgb(229, 165, 217);
+}
+.normal{
+	background-color: rgb(206, 206, 206);
+}
+.bug{
+	background-color: rgb(186, 216, 169);
+}
+.ground{
+	background-color: rgb(186, 163, 115);
+}
+.electric{
+	background-color: rgb(249, 235, 127);
+}
+.grass{
+	background-color: rgb(202, 209, 106);
+}
+.fighting{
+	background-color: rgb(249, 87, 101);
+}
+.psychic{
+	background-color: rgb(129, 249, 231);
+}
+.rock{
+	background-color: rgb(219, 219, 219);
+}
+.steel{
+	background-color: rgb(140, 171, 209);
+}
+.ice{
+	background-color: rgb(194, 209, 249);
+}
+.ghost{
+	background-color: rgb(232, 183, 221);
+}
+.dragon{
+	background-color: rgb(186, 255, 165);
+}
+.dark{
+	background-color: rgb(170, 169, 169);
 }

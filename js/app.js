@@ -1,13 +1,16 @@
+
 var nextPokemons = "";
+
+var typesHtml = "";
+
+function getTypes(element) {
+  typesHtml += '<span class="'+element.name+'">'+element.name+'</span>';
+}
 
 function newPokemonCards(data){
   data.objects.forEach(function(pokemon){
 
-    var typesHtml = "";
-
-    function getTypes(element) {
-      typesHtml += '<span class="'+element.name+'">'+element.name+'</span>';
-    }
+    typesHtml = "";
 
     pokemon.types.forEach(getTypes);
 
@@ -21,7 +24,7 @@ function newPokemonCards(data){
 
     $('#cards').append(html);
 
-    nextPokemons += data.meta.next;
+    nextPokemons = data.meta.next;
 
   });
 }
@@ -34,11 +37,7 @@ $.ajax({
 
 function getPokemonCard(data){
 
-  var typesHtml = "";
-
-  function getTypes(element) {
-    typesHtml += '<span class="'+element.name+'">'+element.name+'</span>';
-  }
+  typesHtml = "";
 
   data.types.forEach(getTypes);
 
@@ -87,7 +86,7 @@ function getPokemonCard(data){
 
   $("#selected-card").html(html);
 
-      }
+}
 
 $(document).ready(function(){
   $('#cards').on('click', '.card', function(){
@@ -100,7 +99,7 @@ $(document).ready(function(){
   
   $(".btn").on('click', function(){
     $.ajax({
-      url: 'http://pokeapi.co/'+nextPokemons,
+      url: 'http://pokeapi.co'+nextPokemons,
       dataType: 'json',
       success: newPokemonCards
     });
