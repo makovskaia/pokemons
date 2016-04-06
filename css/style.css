@@ -42,6 +42,22 @@ span{
 	width: 28%;
 }
 
+.types{
+	margin-top: 400px;
+	position: fixed;
+}
+
+.types li{
+	display: inline;
+	padding: 2px 5px 2px 5px;
+	border-radius: 2px;
+}
+
+.types li:hover{
+	cursor: pointer;
+	
+}
+
 .footer{
 	height: 50px;
 }

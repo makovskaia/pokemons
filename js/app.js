@@ -3,8 +3,10 @@ var nextPokemons = "";
 
 var typesHtml = "";
 
+var filter = 'all'; 
+
 function getTypes(element) {
-  typesHtml += '<span class="'+element.name+'">'+element.name+'</span>';
+  typesHtml += '<span class="type '+element.name+'">'+element.name+'</span>';
 }
 
 function newPokemonCards(data){
@@ -14,8 +16,16 @@ function newPokemonCards(data){
 
     pokemon.types.forEach(getTypes);
 
+    var divCard = '';
+
+    if( filter == 'all' || typesHtml.includes(filter)){
+      divCard = '<div class="card" id="'+pokemon.national_id+'">';
+    }else{
+      divCard = '<div class="card" style="display: none" id="'+pokemon.national_id+'">';
+    }
+
     var html = '<div class="col-xs-4 small-card">' +
-                  '<div class="card" id="'+pokemon.national_id+'">' + 
+                  divCard + 
                     '<img class="img-responsive" src="http://pokeapi.co/media/img/'+pokemon.national_id+'.png"/>' +
                     '<h4>'+pokemon.name+'</h4>' +
                     '<p>'+typesHtml+'</p>' +
@@ -27,6 +37,7 @@ function newPokemonCards(data){
     nextPokemons = data.meta.next;
 
   });
+
 }
 
 $.ajax({
@@ -104,4 +115,25 @@ $(document).ready(function(){
       success: newPokemonCards
     });
   });
+
+$(".container").on('click', '.type', function(){
+  filter = $(this).html();
+  applyFilter();
 });
+
+});
+
+function applyFilter(){
+  if (filter !== 'all'){
+    for (var i=1; i<=12; i++){
+      var currentCard = $('.col-xs-8 .small-card:nth-child('+i+')');
+      if(currentCard.find("span").attr('class').includes(filter)){
+        currentCard.css('display', 'inline');
+      }else{
+        currentCard.css('display', 'none');
+      }
+    } 
+  }else{
+    $('.col-xs-8').children().css('display', 'inline');
+  }
+}
