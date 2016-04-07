@@ -18,14 +18,8 @@ function newPokemonCards(data){
 
     var divCard = '';
 
-    if( filter == 'all' || typesHtml.includes(filter)){
-      divCard = '<div class="card" id="'+pokemon.national_id+'">';
-    }else{
-      divCard = '<div class="card" style="display: none" id="'+pokemon.national_id+'">';
-    }
-
     var html = '<div class="col-xs-4 small-card">' +
-                  divCard + 
+                  '<div class="card" id="'+pokemon.national_id+'">' + 
                     '<img class="img-responsive" src="http://pokeapi.co/media/img/'+pokemon.national_id+'.png"/>' +
                     '<h4>'+pokemon.name+'</h4>' +
                     '<p>'+typesHtml+'</p>' +
@@ -37,6 +31,8 @@ function newPokemonCards(data){
     nextPokemons = data.meta.next;
 
   });
+
+  applyFilter();
 
 }
 
@@ -125,7 +121,7 @@ $(".container").on('click', '.type', function(){
 
 function applyFilter(){
   if (filter !== 'all'){
-    for (var i=1; i<=12; i++){
+    for (var i=1; i<=$('.col-xs-8 .small-card').length; i++){
       var currentCard = $('.col-xs-8 .small-card:nth-child('+i+')');
       if(currentCard.find("span").attr('class').includes(filter)){
         currentCard.css('display', 'inline');

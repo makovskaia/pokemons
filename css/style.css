@@ -55,11 +55,14 @@ span{
 
 .types li:hover{
 	cursor: pointer;
-	
 }
 
 .footer{
 	height: 50px;
+}
+
+.all{
+	background-color: rgb(142, 167, 255);
 }
 
 .poison{
