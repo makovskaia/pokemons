@@ -3,8 +3,10 @@ var nextPokemons = "";
 
 var typesHtml = "";
 
+var filter = 'all'; 
+
 function getTypes(element) {
-  typesHtml += '<span class="'+element.name+'">'+element.name+'</span>';
+  typesHtml += '<span class="type '+element.name+'">'+element.name+'</span>';
 }
 
 function newPokemonCards(data){
@@ -13,6 +15,8 @@ function newPokemonCards(data){
     typesHtml = "";
 
     pokemon.types.forEach(getTypes);
+
+    var divCard = '';
 
     var html = '<div class="col-xs-4 small-card">' +
                   '<div class="card" id="'+pokemon.national_id+'">' + 
@@ -27,6 +31,9 @@ function newPokemonCards(data){
     nextPokemons = data.meta.next;
 
   });
+
+  applyFilter();
+
 }
 
 $.ajax({
@@ -104,4 +111,25 @@ $(document).ready(function(){
       success: newPokemonCards
     });
   });
+
+$(".container").on('click', '.type', function(){
+  filter = $(this).html();
+  applyFilter();
 });
+
+});
+
+function applyFilter(){
+  if (filter !== 'all'){
+    for (var i=1; i<=$('.col-xs-8 .small-card').length; i++){
+      var currentCard = $('.col-xs-8 .small-card:nth-child('+i+')');
+      if(currentCard.find("span").attr('class').includes(filter)){
+        currentCard.css('display', 'inline');
+      }else{
+        currentCard.css('display', 'none');
+      }
+    } 
+  }else{
+    $('.col-xs-8').children().css('display', 'inline');
+  }
+}
