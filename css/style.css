@@ -130,3 +130,11 @@ body{
 .dark{
 	background-color: rgb(170, 169, 169);
 }
+
+.shadow{
+	background-color: rgb(234, 234, 234);
+}
+
+.unknown{
+	background-color: rgb(255, 209, 117);
+}
