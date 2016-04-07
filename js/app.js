@@ -132,4 +132,6 @@ function applyFilter(){
   }else{
     $('.col-xs-8').children().css('display', 'inline');
   }
+  $('.types li').css('border-bottom', 'none');
+  $('.types .'+filter+'').css('border-bottom', '2px solid black');
 }

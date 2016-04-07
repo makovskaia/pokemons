@@ -13,15 +13,18 @@ body{
 .types{
 	text-align: center;
 	margin-bottom: 30px;
+
 }
 
+.types ul{
+	word-spacing: -1;
+}
 .types li{
-	display: inline;
-	padding: 2px 5px 2px 5px;
-	border-radius: 2px;
+	display: inline-block;
+
 }
 
-.types li:hover{
+.type:hover{
 	cursor: pointer;
 }
 
@@ -45,8 +48,8 @@ body{
 	cursor: pointer;
 }
 
-span{
-	margin: 0px 5px 0px 5px;
+.type{
+	margin: 2px;
 	padding: 2px 5px 2px 5px;
 	border-radius: 2px;
 }
@@ -63,21 +66,6 @@ span{
 	border-radius: 6px;
 	position: fixed;
 	width: 28%;
-}
-
-.types{
-	margin-top: 400px;
-	position: fixed;
-}
-
-.types li{
-	display: inline;
-	padding: 2px 5px 2px 5px;
-	border-radius: 2px;
-}
-
-.types li:hover{
-	cursor: pointer;
 }
 
 .footer{
