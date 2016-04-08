@@ -54,7 +54,7 @@ body{
 	border-radius: 2px;
 }
 
-.selected-pokemon table{
+table{
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -137,4 +137,9 @@ body{
 
 .unknown{
 	background-color: rgb(255, 209, 117);
+}
+
+.modal-body{
+	text-align: center;
+	padding: 20px;
 }

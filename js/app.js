@@ -16,12 +16,10 @@ function newPokemonCards(data){
 
     pokemon.types.forEach(getTypes);
 
-    var divCard = '';
-
     var html = '<div class="col-xs-4 small-card">' +
                   '<div class="card" id="'+pokemon.national_id+'">' + 
                     '<img class="img-responsive" src="http://pokeapi.co/media/img/'+pokemon.national_id+'.png"/>' +
-                    '<h4>'+pokemon.name+'</h4>' +
+                    '<p>'+pokemon.name+'</p>' +
                     '<p>'+typesHtml+'</p>' +
                   '</div>' +
                 '</div>';
@@ -48,8 +46,7 @@ function getPokemonCard(data){
 
   data.types.forEach(getTypes);
 
-  var html = '<div class="selected-pokemon">' +
-                '<img class="img-responsive" src="http://pokeapi.co/media/img/'+data.national_id+'.png"/>' +
+  var html = '<img class="img-responsive" src="http://pokeapi.co/media/img/'+data.national_id+'.png"/>' +
                 '<h3>'+data.name+' #'+data.national_id+'</h3>' +
                 '<table>' +
                   '<tr>' +
@@ -88,14 +85,19 @@ function getPokemonCard(data){
                     '<td>Total Moves</td>'+
                     '<td>'+data.moves.length+'</td>'+
                   '</tr>'+
-                '</table>'+
-              '</div>';
+                '</table>';
 
-  $("#selected-card").html(html);
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    $('.modal-body').html(html);
+    $('#card-modal').modal('show');
+  }else{
 
+    $("#selected-card").html('<div class="selected-pokemon">' + html + '</div>');
+  }
 }
 
 $(document).ready(function(){
+  // $('#card-modal').modal('show');
   $('#cards').on('click', '.card', function(){
     $.ajax({
       url: 'http://pokeapi.co/api/v1/pokemon/'+$(this).attr('id'),
@@ -112,7 +114,7 @@ $(document).ready(function(){
     });
   });
 
-$(".container").on('click', '.type', function(){
+$(".main").on('click', '.type', function(){
   filter = $(this).html();
   applyFilter();
 });
@@ -121,8 +123,8 @@ $(".container").on('click', '.type', function(){
 
 function applyFilter(){
   if (filter !== 'all'){
-    for (var i=1; i<=$('.col-xs-8 .small-card').length; i++){
-      var currentCard = $('.col-xs-8 .small-card:nth-child('+i+')');
+    for (var i=1; i<=$('.small-card').length; i++){
+      var currentCard = $('.small-card:nth-child('+i+')');
       if(currentCard.find("span").attr('class').includes(filter)){
         currentCard.css('display', 'inline');
       }else{
@@ -130,8 +132,20 @@ function applyFilter(){
       }
     } 
   }else{
-    $('.col-xs-8').children().css('display', 'inline');
+    $('#cards').children().css('display', 'inline');
   }
   $('.types li').css('border-bottom', 'none');
   $('.types .'+filter+'').css('border-bottom', '2px solid black');
+}
+
+//for mobile version
+
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+  $('.main').attr('class','container-flow main');
+  $('.container-flow').css('margin','30px');
+  $('.large').css('display','none');
+  $('#cards').attr('class','col-xs-12');
+  $('.small-card').attr('class', 'col-xs-6 small-card');
+  $('.buttonDiv').attr('class','col-xs-12 buttonDiv');
+  $('body').css('font-size','25px');
 }
