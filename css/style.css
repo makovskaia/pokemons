@@ -1,7 +1,8 @@
-body{
+html, body{
 	font-family: 'Muli', sans-serif;
-	background:url(https://cdn2.vox-cdn.com/thumbor/ie_REzAR9GuOcmOD03TGyaVL9Gk=/0x266:1024x949/1280x854/cdn0.vox-cdn.com/uploads/chorus_image/image/48942277/N3DS_PokemonSuperMysteryDungeon_MainIllustration_png_jpgcopy.0.0.jpg) no-repeat center center fixed;
-	background-size:cover;
+/*	background:url(https://cdn2.vox-cdn.com/thumbor/ie_REzAR9GuOcmOD03TGyaVL9Gk=/0x266:1024x949/1280x854/cdn0.vox-cdn.com/uploads/chorus_image/image/48942277/N3DS_PokemonSuperMysteryDungeon_MainIllustration_png_jpgcopy.0.0.jpg) no-repeat center center fixed;
+	background-size:cover;*/
+	background-color: rgb(91, 61, 112);
 }
 .header{
 	height: 100px;
@@ -14,6 +15,7 @@ body{
 	font-weight: 800;
 	text-align: center;
 	text-shadow: 2px, 2px, 2px, 2px black;
+	font-size: 50px;
 }
 
 .types{
@@ -47,6 +49,8 @@ body{
 .spinner p{
 	font-weight: bold;
 	font-size: 30px;
+	text-shadow: 3px 3px black;
+
 }
 
 .small-card{
@@ -69,6 +73,10 @@ body{
 .small-card>div:hover{
 	cursor: pointer;
 	background-color: rgb(229, 227, 227);
+}
+
+button{
+	height: 60px;
 }
 
 .type{
@@ -95,6 +103,33 @@ table{
 #selected-card .spinner{
 	position: fixed;
 	margin-left: 80px;
+}
+
+.modal-body{
+	text-align: center;
+	padding: 20px;
+}
+
+.modal-body .spinner{
+	color: black;
+}
+
+.notFound{
+	color: white;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+}
+
+.notFound img{
+	width: 200px;
+}
+
+.notFound p{
+	font-weight: bold;
+	font-size: 30px;
+	text-shadow: 3px 3px black;
+
 }
 
 .footer{
@@ -166,12 +201,4 @@ table{
 
 .unknown{
 	background-color: rgb(255, 209, 117);
-}
-
-.modal-body{
-	text-align: center;
-	padding: 20px;
-}
-.modal-body .spinner{
-	color: black;
 }

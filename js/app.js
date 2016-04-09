@@ -120,6 +120,7 @@ $(document).ready(function(){
   });
   
   $(".btn").on('click', function(){
+    $('.notFound').hide();
     $('#cards').append(spinner);
     $(this).prop('disabled', true);
     $.ajax({
@@ -138,9 +139,13 @@ $(".main").on('click', '.type', function(){
 
 function applyFilter(){
   var $card = $('.small-card');
+  $('.notFound').hide();
   if (filter !== 'all'){
     $card.hide();
     $('.small-card .'+filter).parents('.small-card').show();
+    if($('.small-card .'+filter).parents('.small-card').length === 0){
+      $('.notFound').show();
+    }
   }else{
     $card.css('display', 'inline');
   }
