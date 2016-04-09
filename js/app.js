@@ -16,6 +16,7 @@ function getTypes(element) {
 
 function newPokemonCards(data){
   $('.spinner').hide();
+  $('button').prop('disabled', false);
   data.objects.forEach(function(pokemon){
 
     typesHtml = "";
@@ -114,6 +115,7 @@ $(document).ready(function(){
   
   $(".btn").on('click', function(){
     $('#cards').append(spinner);
+    $(this).prop('disabled', true);
     $.ajax({
       url: 'http://pokeapi.co'+nextPokemons,
       dataType: 'json',
