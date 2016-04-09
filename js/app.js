@@ -96,7 +96,7 @@ function getPokemonCard(data){
 
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
     $('.modal-body').html(html);
-    $('#card-modal').modal('show');
+
   }else{
 
     $("#selected-card").html('<div class="selected-pokemon">' + html + '</div>');
@@ -104,8 +104,14 @@ function getPokemonCard(data){
 }
 
 $(document).ready(function(){
+
   $('#cards').on('click', '.card', function(){
+     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    $('.modal-body').html(spinner);
+    $('#card-modal').modal('show');
+  }else{
     $('#selected-card').html(spinner);
+  }
     $.ajax({
       url: 'http://pokeapi.co/api/v1/pokemon/'+$(this).attr('id'),
       dataType: 'json',

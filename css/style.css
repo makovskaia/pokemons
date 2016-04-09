@@ -172,3 +172,6 @@ table{
 	text-align: center;
 	padding: 20px;
 }
+.modal-body .spinner{
+	color: black;
+}
