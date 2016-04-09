@@ -1,13 +1,19 @@
 body{
 	font-family: 'Muli', sans-serif;
+	background:url(https://cdn2.vox-cdn.com/thumbor/ie_REzAR9GuOcmOD03TGyaVL9Gk=/0x266:1024x949/1280x854/cdn0.vox-cdn.com/uploads/chorus_image/image/48942277/N3DS_PokemonSuperMysteryDungeon_MainIllustration_png_jpgcopy.0.0.jpg) no-repeat center center fixed;
+	background-size:cover;
 }
 .header{
 	height: 100px;
-	text-align: center;
+	color: white;
+	text-shadow: 3px 3px black;
 }
 
 .header h1{
 	margin-top: 50px;
+	font-weight: 800;
+	text-align: center;
+	text-shadow: 2px, 2px, 2px, 2px black;
 }
 
 .types{
@@ -21,11 +27,26 @@ body{
 }
 .types li{
 	display: inline-block;
-
 }
 
 .type:hover{
 	cursor: pointer;
+}
+
+.spinner{
+	color: white;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+}
+
+.spinner img{
+	width: 200px;
+}
+
+.spinner p{
+	font-weight: bold;
+	font-size: 30px;
 }
 
 .small-card{
@@ -37,6 +58,7 @@ body{
 	border-radius: 6px;
 	height: 230px;
 	margin-bottom: 25px;
+	background-color: white;
 }
 
 .img-responsive{
@@ -46,6 +68,7 @@ body{
 
 .small-card>div:hover{
 	cursor: pointer;
+	background-color: rgb(229, 227, 227);
 }
 
 .type{
@@ -66,6 +89,7 @@ table{
 	border-radius: 6px;
 	position: fixed;
 	width: 28%;
+	background-color: white;	
 }
 
 .footer{

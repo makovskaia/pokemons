@@ -5,11 +5,17 @@ var typesHtml = "";
 
 var filter = 'all'; 
 
+var spinner = '<div class="spinner">' +
+                '<img src="http://25.media.tumblr.com/c99a579db3ae0fc164bf4cca148885d3/tumblr_mjgv8kEuMg1s87n79o1_400.gif" />' +
+                '<p>Loading</p>' +
+            '</div>';
+
 function getTypes(element) {
   typesHtml += '<span class="type '+element.name+'">'+element.name+'</span>';
 }
 
 function newPokemonCards(data){
+  $('.spinner').hide();
   data.objects.forEach(function(pokemon){
 
     typesHtml = "";
@@ -97,8 +103,8 @@ function getPokemonCard(data){
 }
 
 $(document).ready(function(){
-  // $('#card-modal').modal('show');
   $('#cards').on('click', '.card', function(){
+    $('#selected-card').html(spinner);
     $.ajax({
       url: 'http://pokeapi.co/api/v1/pokemon/'+$(this).attr('id'),
       dataType: 'json',
@@ -107,6 +113,7 @@ $(document).ready(function(){
   });
   
   $(".btn").on('click', function(){
+    $('#cards').append(spinner);
     $.ajax({
       url: 'http://pokeapi.co'+nextPokemons,
       dataType: 'json',
@@ -122,20 +129,15 @@ $(".main").on('click', '.type', function(){
 });
 
 function applyFilter(){
+  var $card = $('.small-card');
   if (filter !== 'all'){
-    for (var i=1; i<=$('.small-card').length; i++){
-      var currentCard = $('.small-card:nth-child('+i+')');
-      if(currentCard.find("span").attr('class').includes(filter)){
-        currentCard.css('display', 'inline');
-      }else{
-        currentCard.css('display', 'none');
-      }
-    } 
+    $card.hide();
+    $('.small-card .'+filter).parents('.small-card').show();
   }else{
-    $('#cards').children().css('display', 'inline');
+    $card.css('display', 'inline');
   }
   $('.types li').css('border-bottom', 'none');
-  $('.types .'+filter+'').css('border-bottom', '2px solid black');
+  $('.types .'+filter+'').css('border-bottom', '4px solid white');
 }
 
 //for mobile version
