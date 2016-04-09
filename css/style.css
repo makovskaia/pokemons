@@ -92,6 +92,11 @@ table{
 	background-color: white;	
 }
 
+#selected-card .spinner{
+	position: fixed;
+	margin-left: 80px;
+}
+
 .footer{
 	height: 50px;
 }
