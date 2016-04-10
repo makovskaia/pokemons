@@ -53,9 +53,7 @@ function getPokemonCard(data){
 
   data.types.forEach(getTypes);
 
-  var html = '<img class="img-responsive" src="http://pokeapi.co/media/img/'+data.national_id+'.png"/>' +
-                '<h3>'+data.name+' #'+data.national_id+'</h3>' +
-                '<table>' +
+  var html = '<table>' +
                   '<tr>' +
                     '<td>Type</td>' +
                     '<td>'+typesHtml+'</td>' +
@@ -95,11 +93,14 @@ function getPokemonCard(data){
                 '</table>';
 
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-    $('.modal-body').html(html);
+    $('.modal-header').html('<h1>'+data.name+' #'+data.national_id+'</h1>');
+    $('.modal-body').html('<img src="http://pokeapi.co/media/img/'+data.national_id+'.png" style="width: 70%"/>' + html);
 
   }else{
 
-    $("#selected-card").html('<div class="selected-pokemon">' + html + '</div>');
+    $("#selected-card").html('<div class="selected-pokemon"><img class="img-responsive" src="http://pokeapi.co/media/img/'+data.national_id+'.png"/>' +
+                '<h3>'+data.name+' #'+data.national_id+'</h3>' +
+                 html + '</div>');
   }
 }
 
@@ -163,4 +164,5 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
   $('.small-card').attr('class', 'col-xs-6 small-card');
   $('.buttonDiv').attr('class','col-xs-12 buttonDiv');
   $('body').css('font-size','25px');
+  $('button').css('font-size', '30px');
 }
