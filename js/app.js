@@ -5,23 +5,28 @@ var typesHtml = "";
 
 var filter = 'all'; 
 
+var spinner = '<div class="spinner">' +
+                '<img src="http://25.media.tumblr.com/c99a579db3ae0fc164bf4cca148885d3/tumblr_mjgv8kEuMg1s87n79o1_400.gif" />' +
+                '<p>Loading</p>' +
+            '</div>';
+
 function getTypes(element) {
   typesHtml += '<span class="type '+element.name+'">'+element.name+'</span>';
 }
 
 function newPokemonCards(data){
+  $('.spinner').hide();
+  $('button').prop('disabled', false);
   data.objects.forEach(function(pokemon){
 
     typesHtml = "";
 
     pokemon.types.forEach(getTypes);
 
-    var divCard = '';
-
     var html = '<div class="col-xs-4 small-card">' +
                   '<div class="card" id="'+pokemon.national_id+'">' + 
                     '<img class="img-responsive" src="http://pokeapi.co/media/img/'+pokemon.national_id+'.png"/>' +
-                    '<h4>'+pokemon.name+'</h4>' +
+                    '<p>'+pokemon.name+'</p>' +
                     '<p>'+typesHtml+'</p>' +
                   '</div>' +
                 '</div>';
@@ -48,10 +53,7 @@ function getPokemonCard(data){
 
   data.types.forEach(getTypes);
 
-  var html = '<div class="selected-pokemon">' +
-                '<img class="img-responsive" src="http://pokeapi.co/media/img/'+data.national_id+'.png"/>' +
-                '<h3>'+data.name+' #'+data.national_id+'</h3>' +
-                '<table>' +
+  var html = '<table>' +
                   '<tr>' +
                     '<td>Type</td>' +
                     '<td>'+typesHtml+'</td>' +
@@ -88,15 +90,29 @@ function getPokemonCard(data){
                     '<td>Total Moves</td>'+
                     '<td>'+data.moves.length+'</td>'+
                   '</tr>'+
-                '</table>'+
-              '</div>';
+                '</table>';
 
-  $("#selected-card").html(html);
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    $('.modal-header').html('<h1>'+data.name+' #'+data.national_id+'</h1>');
+    $('.modal-body').html('<img src="http://pokeapi.co/media/img/'+data.national_id+'.png" style="width: 70%"/>' + html);
 
+  }else{
+
+    $("#selected-card").html('<div class="selected-pokemon"><img class="img-responsive" src="http://pokeapi.co/media/img/'+data.national_id+'.png"/>' +
+                '<h3>'+data.name+' #'+data.national_id+'</h3>' +
+                 html + '</div>');
+  }
 }
 
 $(document).ready(function(){
+
   $('#cards').on('click', '.card', function(){
+     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    $('.modal-body').html(spinner);
+    $('#card-modal').modal('show');
+  }else{
+    $('#selected-card').html(spinner);
+  }
     $.ajax({
       url: 'http://pokeapi.co/api/v1/pokemon/'+$(this).attr('id'),
       dataType: 'json',
@@ -105,6 +121,9 @@ $(document).ready(function(){
   });
   
   $(".btn").on('click', function(){
+    $('.notFound').hide();
+    $('#cards').append(spinner);
+    $(this).prop('disabled', true);
     $.ajax({
       url: 'http://pokeapi.co'+nextPokemons,
       dataType: 'json',
@@ -112,7 +131,7 @@ $(document).ready(function(){
     });
   });
 
-$(".container").on('click', '.type', function(){
+$(".main").on('click', '.type', function(){
   filter = $(this).html();
   applyFilter();
 });
@@ -120,18 +139,30 @@ $(".container").on('click', '.type', function(){
 });
 
 function applyFilter(){
+  var $card = $('.small-card');
+  $('.notFound').hide();
   if (filter !== 'all'){
-    for (var i=1; i<=$('.col-xs-8 .small-card').length; i++){
-      var currentCard = $('.col-xs-8 .small-card:nth-child('+i+')');
-      if(currentCard.find("span").attr('class').includes(filter)){
-        currentCard.css('display', 'inline');
-      }else{
-        currentCard.css('display', 'none');
-      }
-    } 
+    $card.hide();
+    $('.small-card .'+filter).parents('.small-card').show();
+    if($('.small-card .'+filter).parents('.small-card').length === 0){
+      $('.notFound').show();
+    }
   }else{
-    $('.col-xs-8').children().css('display', 'inline');
+    $card.css('display', 'inline');
   }
   $('.types li').css('border-bottom', 'none');
-  $('.types .'+filter+'').css('border-bottom', '2px solid black');
+  $('.types .'+filter+'').css('border-bottom', '4px solid white');
+}
+
+//for mobile version
+
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+  $('.main').attr('class','container-flow main');
+  $('.container-flow').css('margin','30px');
+  $('.large').css('display','none');
+  $('#cards').attr('class','col-xs-12');
+  $('.small-card').attr('class', 'col-xs-6 small-card');
+  $('.buttonDiv').attr('class','col-xs-12 buttonDiv');
+  $('body').css('font-size','25px');
+  $('button').css('font-size', '30px');
 }
